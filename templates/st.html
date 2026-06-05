@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Конструктор Комп - вже зібрані</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1> Вже зібрані компи</h1>
+
+
+        <form method="POST" action="{{ url_for('st') }}">
+            <div class="options-grid">
+{% for sti in st %}
+                    <label class="option-card">
+                        <input type="radio" name="st" value="{{sti.id}}" required>
+                        <div class="card-content">
+                            <img src="{{ url_for('static', filename=sti.image) }}" alt="{{sti.name}}" class="option-image">
+                            <h3>{{sti.name}}</h3>
+                            <p>{{sti.description}}</p>
+                            <p class="price">${{sti.price}}</p>
+                        </div>
+                    </label>
+{% endfor %}
+            </div>
+            <button type="submit" class="btn btn-primary">Далі</button>
+        </form>
+        <a href="/" class="btn btn-secondary">На головну</a>
+    </div>
+</body>
+</html>
